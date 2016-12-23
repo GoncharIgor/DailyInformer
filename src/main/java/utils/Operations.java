@@ -6,7 +6,6 @@ package utils;
 public class Operations {
 
     public static String extractNumbersAndSignsFromString (String lane){
-        return lane.replaceAll("[^0-9+-]", "");
+        return lane.replaceAll("[^0-9+−]", "");
     }
-
 }
