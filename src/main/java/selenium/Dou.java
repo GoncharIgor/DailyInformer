@@ -19,7 +19,7 @@ public class Dou extends BaseSeleniumMethod {
     private By eventHeader = By.xpath(".//h2/a");
     private By eventPrice = By.cssSelector(".when-and-where > span:nth-child(2)");
 
-    public List<String> getTodaysEventsInKyiv() {
+    public List<String> getTodaysITEventsInKyiv() {
         List<String> events = new ArrayList<String>();
 
         try {

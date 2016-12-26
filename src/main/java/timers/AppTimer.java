@@ -30,7 +30,7 @@ public class AppTimer {
         public void run() {
             List<String> weather = gismeteo.getTodaysWeather();
             List<String> currency = iFinance.getTodaysCurrencyRates();
-            List<String> events = dou.getTodaysEventsInKyiv();
+            List<String> events = dou.getTodaysITEventsInKyiv();
             System.out.println(events.toString());
             List<String> colected = BaseSeleniumMethod.collectDataFrom3ArrayLists(weather, currency, events);
 
