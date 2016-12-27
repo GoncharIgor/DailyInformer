@@ -17,7 +17,7 @@ public class BaseSeleniumMethod {
         driver.close();
     }
 
-    public static List<String> collectDataFrom3ArrayLists(List<String> weather, List<String> currency, List<String> events){
+    public static List<String> collectDataFrom3ArrayLists(List<String> weather, List<String> currency, List<String> itEvents,  List<String> cityEvents){
         List<String> collectedData = new ArrayList<String>();
         collectedData.addAll(weather);
         collectedData.add("\n");
@@ -25,7 +25,10 @@ public class BaseSeleniumMethod {
         collectedData.addAll(currency);
         collectedData.add("\n");
         collectedData.add("\n");
-        collectedData.addAll(events);
+        collectedData.addAll(itEvents);
+        collectedData.add("\n");
+        collectedData.add("\n");
+        collectedData.addAll(cityEvents);
 
         return collectedData;
     }

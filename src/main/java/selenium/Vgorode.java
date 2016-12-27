@@ -30,13 +30,13 @@ public class Vgorode extends BaseSeleniumMethod {
             open(freeKyivEvents);
             int amountOfFreeEventsInKyiv = getAmountOfFreeEvents();
 
+            events.add("Бесплатные события в Киеве:");
+
             for (int i = 1; i <= amountOfFreeEventsInKyiv; i++) {
                 By eventLocatorHeader = By.xpath(eventStartLocator + i + eventTitleEndLocator);
-                System.out.println($(eventLocatorHeader).getText());
-                // System.out.println($(By.xpath(eventStartLocator + i + eventTimeEndLocator)).getText());
+                events.add("\n" + i + ". " + $(eventLocatorHeader).getText());
 
-                String a = geNodeText($(By.xpath(eventStartLocator + i + eventTimeEndLocator)));
-                System.out.println(a);
+                events.add(geNodeText($(By.xpath(eventStartLocator + i + eventTimeEndLocator))));
             }
 
         } finally {
@@ -52,10 +52,9 @@ public class Vgorode extends BaseSeleniumMethod {
     private static String geNodeText(WebElement element) {
         String text = element.getText();
         for (WebElement child : element.findElements(By.xpath("./*"))) {
-            text = text.replaceFirst(child.getText(), "");
+            text = text.replaceFirst(child.getText(), "").replaceFirst("(\n)", "");
             return text;
         }
         return text;
     }
-
 }

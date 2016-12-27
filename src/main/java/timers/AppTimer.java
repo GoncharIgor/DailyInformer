@@ -1,9 +1,6 @@
 package timers;
 
-import selenium.BaseSeleniumMethod;
-import selenium.Dou;
-import selenium.Gismeteo;
-import selenium.IFinance;
+import selenium.*;
 import utils.GoogleMail;
 
 import java.util.Calendar;
@@ -15,6 +12,7 @@ public class AppTimer {
     private Gismeteo gismeteo = new Gismeteo();
     private IFinance iFinance = new IFinance();
     private Dou dou = new Dou();
+    Vgorode vgorode = new Vgorode();
 
     GoogleMail googleMail = new GoogleMail();
     private Timer timer = new Timer();
@@ -30,9 +28,11 @@ public class AppTimer {
         public void run() {
             List<String> weather = gismeteo.getTodaysWeather();
             List<String> currency = iFinance.getTodaysCurrencyRates();
-            List<String> events = dou.getTodaysITEventsInKyiv();
-            System.out.println(events.toString());
-            List<String> colected = BaseSeleniumMethod.collectDataFrom3ArrayLists(weather, currency, events);
+            List<String> itEvents = dou.getTodaysITEventsInKyiv();
+            List<String> cityEvents = vgorode.getTodaysFreeEventsInKyiv();
+
+
+            List<String> colected = BaseSeleniumMethod.collectDataFrom3ArrayLists(weather, currency, itEvents, cityEvents);
 
             try {
                 googleMail.send("IgorGoncharTest", "Test_Test", "IgorGoncharUA@gmail.com", "", "Ужедневная рассылка", colected.toString(), "");
