@@ -9,12 +9,12 @@ import java.io.IOException;
 /**
  * Created by i.gonchar on 22.12.2016.
  */
-public class Logger {
+public class LoggerManager {
     private static String loggerFilePath = "./target/log.log";
 
     public static org.apache.logging.log4j.Logger createLogger() {
         org.apache.logging.log4j.Logger logger = LogManager.getRootLogger();
-        logger.info("Logger was initialized");
+        logger.info("LoggerManager was initialized");
         return logger;
     }
 

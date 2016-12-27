@@ -1,6 +1,7 @@
 package utils;
 
 import com.sun.mail.smtp.SMTPTransport;
+import org.apache.logging.log4j.Logger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -19,6 +20,7 @@ import java.util.Date;
 import java.util.Properties;
 
 public class GoogleMail {
+    private static final Logger LOGGER = LoggerManager.createLogger();
 
     public void send(final String username, final String password, String recipientEmail, String ccEmail, String title, String message, String attachmentPath) throws MessagingException {
         Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
@@ -77,6 +79,7 @@ public class GoogleMail {
                 multipart.addBodyPart(messageBodyPart);
             }
             message.setContent(multipart);
+            LOGGER.info("Mail body was set up");
         } catch (MessagingException e) {
             //LOGGER.error("Attachment was not set to the message body");
             e.printStackTrace();

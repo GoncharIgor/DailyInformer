@@ -2,9 +2,6 @@ package utils;
 
 import java.io.Serializable;
 
-/**
- * Created by i.gonchar on 6/16/2016.
- */
 public class Pair<F, S> implements Serializable {
     private F first = null;
     private S second = null;

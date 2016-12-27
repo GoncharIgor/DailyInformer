@@ -1,7 +1,9 @@
 package timers;
 
+import org.apache.logging.log4j.Logger;
 import selenium.*;
 import utils.GoogleMail;
+import utils.LoggerManager;
 
 import java.util.Calendar;
 import java.util.List;
@@ -9,12 +11,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class AppTimer {
+    private static final Logger LOGGER = LoggerManager.createLogger();
     private Gismeteo gismeteo = new Gismeteo();
     private IFinance iFinance = new IFinance();
     private Dou dou = new Dou();
-    Vgorode vgorode = new Vgorode();
+    private Vgorode vgorode = new Vgorode();
 
-    GoogleMail googleMail = new GoogleMail();
+    private GoogleMail googleMail = new GoogleMail();
     private Timer timer = new Timer();
     private Calendar today = Calendar.getInstance();
 
@@ -31,12 +34,11 @@ public class AppTimer {
             List<String> itEvents = dou.getTodaysITEventsInKyiv();
             List<String> cityEvents = vgorode.getTodaysFreeEventsInKyiv();
 
-
             List<String> colected = BaseSeleniumMethod.collectDataFrom3ArrayLists(weather, currency, itEvents, cityEvents);
 
             try {
                 googleMail.send("IgorGoncharTest", "Test_Test", "IgorGoncharUA@gmail.com", "", "Ужедневная рассылка", colected.toString(), "");
-                System.out.println("Email was sent to recipients");
+                LOGGER.info("Email was sent to recipients");
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -11,11 +11,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.apache.logging.log4j.Logger;
 
 import java.util.concurrent.TimeUnit;
 
 public class WebDriverManager {
-    private static final org.apache.logging.log4j.Logger LOGGER = Logger.createLogger();
+    private static final Logger LOGGER = LoggerManager.createLogger();
 
     public static WebDriver initializeWebDriver(String browser) {
         WebDriver driver = null;
@@ -38,7 +39,7 @@ public class WebDriverManager {
             setUpWaits(driver);
             LOGGER.info(WordUtils.capitalize(browser) + " browser was initialized");
         } else {
-            LOGGER.info("Incorrect browser was passed");
+            LOGGER.error("Incorrect browser was passed");
         }
         return driver;
     }
@@ -47,6 +48,7 @@ public class WebDriverManager {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
         WebDriverRunner.setWebDriver(driver);
+        LOGGER.info("Implicity waits were set up");
     }
 
     private static String getOSName() {
