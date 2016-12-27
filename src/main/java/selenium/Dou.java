@@ -15,9 +15,9 @@ public class Dou extends BaseSeleniumMethod {
 
     private final String douCalendarKyivUrl = "https://dou.ua/calendar/city/%D0%9A%D0%B8%D0%B5%D0%B2/";
     private String dayEventsCompoundSelector = (".//article[count(preceding-sibling::div)=");
-    //  private By tomorrowEvents = By.xpath(".//article[count(preceding-sibling::div)=2]");
     private By eventHeader = By.xpath(".//h2/a");
     private By eventPrice = By.cssSelector(".when-and-where > span:nth-child(2)");
+    private By eventDescription = By.cssSelector(".when-and-where ~ p");
 
     public List<String> getTodaysITEventsInKyiv() {
         List<String> events = new ArrayList<String>();
@@ -48,7 +48,9 @@ public class Dou extends BaseSeleniumMethod {
         By dayEventsSelector = By.xpath(dayEventsCompoundSelector + dayNumber + "]");
 
         for (int i = 0; i < $$(dayEventsSelector).size(); i++) {
-            dayEvents.add("\n" + $$(dayEventsSelector).get(i).findElement(eventHeader).getText() + " , ЦЕНА: " + $$(dayEventsSelector).get(i).findElement(eventPrice).getText());
+            int counter = i + 1;
+            dayEvents.add("\n" + counter + ". " + $$(dayEventsSelector).get(i).findElement(eventHeader).getText() + " , ЦЕНА: " + $$(dayEventsSelector).get(i).findElement(eventPrice).getText());
+            dayEvents.add("\n" + $$(dayEventsSelector).get(i).findElement(eventDescription).getText());
             if ($$(dayEventsSelector).get(i).findElement(eventPrice).getText().equalsIgnoreCase("бесплатно")) {
                 dayEvents.add("\n" + $$(dayEventsSelector).get(i).findElement(eventHeader).getAttribute("href"));
             }

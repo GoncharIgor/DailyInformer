@@ -29,14 +29,14 @@ public class BaseSeleniumMethod {
     public static List<String> collectDataFrom3ArrayLists(List<String> weather, List<String> currency, List<String> itEvents, List<String> cityEvents) {
         List<String> collectedData = new ArrayList<String>();
         collectedData.addAll(weather);
-        collectedData.add("");
-        collectedData.add("");
+        collectedData.add("\n");
+        collectedData.add("\n");
         collectedData.addAll(currency);
-        collectedData.add("");
-        collectedData.add("");
+        collectedData.add("\n");
+        collectedData.add("\n");
         collectedData.addAll(itEvents);
-        collectedData.add("");
-        collectedData.add("");
+        collectedData.add("\n");
+        collectedData.add("\n");
         collectedData.addAll(cityEvents);
 
         return collectedData;

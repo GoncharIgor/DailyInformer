@@ -34,7 +34,7 @@ public class Vgorode extends BaseSeleniumMethod {
 
             for (int i = 1; i <= amountOfFreeEventsInKyiv; i++) {
                 By eventLocatorHeader = By.xpath(eventStartLocator + i + eventTitleEndLocator);
-                events.add("\n" + i + ". " + $(eventLocatorHeader).getText());
+                events.add("\n" + i + ". " + $(eventLocatorHeader).getText() + "\n");
 
                 events.add(geNodeText($(By.xpath(eventStartLocator + i + eventTimeEndLocator))));
             }

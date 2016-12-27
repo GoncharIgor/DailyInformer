@@ -4,6 +4,7 @@ import org.apache.logging.log4j.Logger;
 import selenium.*;
 import utils.GoogleMail;
 import utils.LoggerManager;
+import utils.Operations;
 
 import java.util.Calendar;
 import java.util.List;
@@ -21,12 +22,6 @@ public class AppTimer {
     private Timer timer = new Timer();
     private Calendar today = Calendar.getInstance();
 
-    {
-        today.set(Calendar.HOUR_OF_DAY, 7);
-        today.set(Calendar.MINUTE, 30);
-        today.set(Calendar.SECOND, 0);
-    }
-
     TimerTask timeTask = new TimerTask() {
         public void run() {
             List<String> weather = gismeteo.getTodaysWeather();
@@ -37,7 +32,7 @@ public class AppTimer {
             List<String> colected = BaseSeleniumMethod.collectDataFrom3ArrayLists(weather, currency, itEvents, cityEvents);
 
             try {
-                googleMail.send("IgorGoncharTest", "Test_Test", "IgorGoncharUA@gmail.com", "", "Ужедневная рассылка", colected.toString(), "");
+                googleMail.send("IgorGoncharTest", "Test_Test", "IgorGoncharUA@gmail.com", "", "Ужедневная рассылка", Operations.extractStringDataFromArralList(colected), "");
                 LOGGER.info("Email was sent to recipients");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -47,9 +42,15 @@ public class AppTimer {
 
     // every dat at 7:30am you run your task
     public void go() {
+        setTimeForTimerRun(7, 30);
         // timer.schedule(timeTask, today.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS)); // 60*60*24*100 = 8640000ms
         timer.schedule(timeTask, 500, 200000); // 60*60*24*100 = 8640000ms
     }
 
+    private void setTimeForTimerRun(int houurs, int minutes) {
+        today.set(Calendar.HOUR_OF_DAY, houurs);
+        today.set(Calendar.MINUTE, minutes);
+        today.set(Calendar.SECOND, 0);
+    }
 }
 

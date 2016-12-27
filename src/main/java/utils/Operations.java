@@ -10,6 +10,11 @@ public class Operations {
 
     public static String extractStringDataFromArralList(List<String> incomeData) {
         StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < incomeData.size(); i++) {
+            sb.append(incomeData.get(i));
+        }
+
         return sb.toString();
     }
 }
