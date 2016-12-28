@@ -1,7 +1,6 @@
 package selenium;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
@@ -11,9 +10,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
-/**
- * Created by i.gonchar on 26.12.2016.
- */
 public class Vgorode extends BaseSeleniumMethod {
     private String freeKyivEvents = "http://kiev.vgorode.ua/event/free/";
     private String basicLocatorPart = ".//*[@id='isotope']/div";

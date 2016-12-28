@@ -8,9 +8,6 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.open;
 
-/**
- * Created by i.gonchar on 26.12.2016.
- */
 public class Dou extends BaseSeleniumMethod {
 
     private final String douCalendarKyivUrl = "https://dou.ua/calendar/city/%D0%9A%D0%B8%D0%B5%D0%B2/";

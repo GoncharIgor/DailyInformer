@@ -1,6 +1,7 @@
 package timers;
 
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import selenium.*;
 import utils.GoogleMail;
 import utils.LoggerManager;
@@ -31,7 +32,7 @@ public class AppTimer {
             List<String> cityEvents = vgorode.getTodaysFreeEventsInKyiv();
             List<String> news = korrespondent.getTodaysNews();
 
-            List<String> colected = BaseSeleniumMethod.collectDataFrom3ArrayLists(weather, currency, itEvents, cityEvents, news);
+            List<String> colected = Operations.collectDataFrom3ArrayLists(weather, currency, itEvents, cityEvents, news);
 
             try {
                 googleMail.send("IgorGoncharTest", "Test_Test", "IgorGoncharUA@gmail.com", "", "Ужедневная рассылка", Operations.extractStringDataFromArralList(colected), "");
