@@ -17,6 +17,7 @@ public class AppTimer {
     private IFinance iFinance = new IFinance();
     private Dou dou = new Dou();
     private Vgorode vgorode = new Vgorode();
+    private Korrespondent korrespondent = new Korrespondent();
 
     private GoogleMail googleMail = new GoogleMail();
     private Timer timer = new Timer();
@@ -28,8 +29,9 @@ public class AppTimer {
             List<String> currency = iFinance.getTodaysCurrencyRates();
             List<String> itEvents = dou.getTodaysITEventsInKyiv();
             List<String> cityEvents = vgorode.getTodaysFreeEventsInKyiv();
+            List<String> news = korrespondent.getTodaysNews();
 
-            List<String> colected = BaseSeleniumMethod.collectDataFrom3ArrayLists(weather, currency, itEvents, cityEvents);
+            List<String> colected = BaseSeleniumMethod.collectDataFrom3ArrayLists(weather, currency, itEvents, cityEvents, news);
 
             try {
                 googleMail.send("IgorGoncharTest", "Test_Test", "IgorGoncharUA@gmail.com", "", "Ужедневная рассылка", Operations.extractStringDataFromArralList(colected), "");
