@@ -14,7 +14,7 @@ public class Korrespondent extends BaseSeleniumMethod {
     private By smallArticlesSelector = By.cssSelector(".top-block.main-grid > .article.article_top_small");
     private By smallArticlesTitleSelector = By.cssSelector(".article_top_small .article__title a");
     private By mainArticlesTitleSelector = By.cssSelector(".article.article_top  .article__title a");
-    private By mainArticleBodySelector = By.cssSelector(".post-item__text>div");
+    private By mainArticleBodySelector = By.cssSelector(".post-item__text>p");
 
     public List<String> getTodaysNews() {
         List<String> news = new ArrayList<String>();
