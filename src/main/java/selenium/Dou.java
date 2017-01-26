@@ -46,9 +46,13 @@ public class Dou extends BaseSeleniumMethod {
 
         for (int i = 0; i < $$(dayEventsSelector).size(); i++) {
             int counter = i + 1;
-            dayEvents.add("\n" + counter + ". " + $$(dayEventsSelector).get(i).findElement(eventHeader).getText() + " , ЦЕНА: " + $$(dayEventsSelector).get(i).findElement(eventPrice).getText());
+            dayEvents.add("\n" + counter + ". " + $$(dayEventsSelector).get(i).findElement(eventHeader).getText());
+            if ($$(dayEventsSelector).get(i).findElements(eventPrice).size() != 0) {
+                dayEvents.add(" , ЦЕНА: " + $$(dayEventsSelector).get(i).findElement(eventPrice).getText());
+            }
             dayEvents.add("\n" + $$(dayEventsSelector).get(i).findElement(eventDescription).getText());
-            if ($$(dayEventsSelector).get(i).findElement(eventPrice).getText().equalsIgnoreCase("бесплатно")) {
+            if ($$(dayEventsSelector).get(i).findElements(eventPrice).size() != 0 &&
+                    $$(dayEventsSelector).get(i).findElement(eventPrice).getText().equalsIgnoreCase("бесплатно")) {
                 dayEvents.add("\n" + $$(dayEventsSelector).get(i).findElement(eventHeader).getAttribute("href"));
             }
         }
